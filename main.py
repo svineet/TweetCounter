@@ -1,5 +1,8 @@
+# ATTENTION: Add a file called settings.py with appropriate settings
+# as imported below.
+
 import tweepy
-from settings import consumer_key, consumer_secret, access_token, access_token_secret
+from settings import consumer_key, consumer_secret, access_token, access_token_secret, hashtag
 
 
 print ("Authenticating.")
@@ -10,7 +13,7 @@ api = tweepy.API(auth)
 print ("Authenticated.")
 print ("Now fetching tweets.")
 
-tweets = api.search(q="#TESTLELBITE")
+tweets = api.search(q=hashtag)
 print ("fetched all tweets")
 print ()
 
