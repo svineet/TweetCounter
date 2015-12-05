@@ -13,19 +13,28 @@ api = tweepy.API(auth)
 print ("Authenticated.")
 print ("Now fetching tweets.")
 
-tweets = api.search(q=hashtag)
+tweets = tweepy.Cursor(api.search,
+                       q=hashtag,
+                       count=100,
+                       result_type="recent",
+                       include_entities=True,
+                       lang="en").items()
 print ("fetched all tweets")
+# print(tweets)
 print ()
 
 counter = {}
 users = {}
 
+index_lulz = 0
 for t in tweets:
     if t.user.id in counter:
         counter[t.user.id] += 1
     else:
         counter[t.user.id] = 1
         users[t.user.id] = t.user
+    index_lulz +=1
+    if index_lulz>500: break
 
 tuple_list = counter.items()
 tuple_list = sorted(tuple_list, key=lambda x: x[1], reverse=True)
